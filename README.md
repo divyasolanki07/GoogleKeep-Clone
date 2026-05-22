@@ -78,5 +78,3 @@ Use these commands from the project folder:
 
 
 ---
-
-If you'd like, I can also make a version with actual badge icons, screenshots, or a polished project demo section.
