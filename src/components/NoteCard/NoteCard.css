@@ -1,0 +1,118 @@
+.note-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  cursor: default;
+  transition: box-shadow var(--transition), background-color var(--transition);
+  break-inside: avoid-column; /* For masonry layout later if needed */
+  min-height: 100px;
+}
+
+[data-theme="dark"] .note-card { border-color: rgba(255,255,255,0.1); }
+
+.note-card:hover {
+  box-shadow: 0 1px 2px 0 var(--color-shadow), 0 2px 6px 2px var(--color-shadow);
+}
+
+.note-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.note-text {
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  color: var(--color-text-primary);
+  opacity: 0.9;
+}
+
+/* Pin Button */
+.pin-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  opacity: 0;
+  transition: opacity var(--transition), background var(--transition), color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.note-card:hover .pin-btn, .pin-btn.active {
+  opacity: 1;
+}
+.pin-btn:hover { background: rgba(0,0,0,0.06); color: var(--color-text-primary); }
+[data-theme="dark"] .pin-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* Hover Tools */
+.note-card-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.note-card:hover .note-card-tools {
+  opacity: 1;
+}
+
+.tool-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition);
+}
+.tool-btn:hover { background: rgba(0,0,0,0.06); color: var(--color-text-primary); }
+[data-theme="dark"] .tool-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* Color Picker */
+.color-picker-container { position: relative; }
+.color-palette {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 4px var(--color-shadow);
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition);
+  z-index: 10;
+  width: 140px;
+}
+.color-picker-container:hover .color-palette {
+  opacity: 1;
+  visibility: visible;
+}
+
+.color-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.color-swatch:hover { border-color: var(--color-text-primary); }
+.color-swatch.active { border-color: var(--color-accent); }
+.color-swatch[style*="default"] { border: 1px solid var(--color-border); }

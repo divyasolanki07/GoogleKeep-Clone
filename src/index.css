@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f1f3f4;
+  --color-border: #e0e0e0;
+  --color-text-primary: #202124;
+  --color-text-secondary: #5f6368;
+  --color-accent: #fbbc04;
+  --color-shadow: rgba(60,64,67,.15);
+  --color-shadow-deep: rgba(60,64,67,.3);
+
+  --sidebar-width: 280px;
+  --sidebar-collapsed: 72px;
+  --header-height: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --transition: 200ms cubic-bezier(.4,0,.2,1);
+
+  /* Note colors */
+  --note-default: #ffffff;
+  --note-red:     #f28b82;
+  --note-orange:  #fbbc04;
+  --note-yellow:  #fff475;
+  --note-green:   #ccff90;
+  --note-teal:    #a8f0e5;
+  --note-blue:    #cbf0f8;
+  --note-darkblue:#aecbfa;
+  --note-purple:  #d7aefb;
+  --note-pink:    #fdcfe8;
+  --note-brown:   #e6c9a8;
+  --note-grey:    #e8eaed;
+}
+
+[data-theme="dark"] {
+  --color-bg: #202124;
+  --color-surface: #2d2e30;
+  --color-surface-hover: #3c3f43;
+  --color-border: #5f6368;
+  --color-text-primary: #e8eaed;
+  --color-text-secondary: #9aa0a6;
+  --color-shadow: rgba(0,0,0,.3);
+  --color-shadow-deep: rgba(0,0,0,.5);
+
+  --note-default: #2d2e30;
+  --note-red:     #5c2b29;
+  --note-orange:  #614a19;
+  --note-yellow:  #635d19;
+  --note-green:   #345920;
+  --note-teal:    #16504b;
+  --note-blue:    #1f3a39; 
+  --note-darkblue:#1e3a5f;
+  --note-purple:  #42275e;
+  --note-pink:    #5b2245;
+  --note-brown:   #442f19;
+  --note-grey:    #3c3f43;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Roboto', 'Google Sans', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea { font-family: inherit; }
+textarea { resize: none; }
+
+/* ── Layout ─────────────────────────────────────────────────────── */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding-top: var(--header-height);
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 16px 24px;
+  transition: margin-left var(--transition);
+}
+
+.main-content::-webkit-scrollbar { width: 8px; }
+.main-content::-webkit-scrollbar-track { background: transparent; }
+.main-content::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+
+/* ── Notes Grid / List ──────────────────────────────────────────── */
+.notes-section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  padding: 0 4px 16px;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.notes-grid.list-view {
+  grid-template-columns: minmax(240px, 600px);
+  justify-content: center;
+}
+
+/* ── Icon Button ────────────────────────────────────────────────── */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  transition: background var(--transition), color var(--transition);
+  font-size: 20px;
+}
+.icon-btn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+/* ── Empty State ────────────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 24px;
+  color: var(--color-text-secondary);
+}
+.empty-state svg { opacity: .15; }
+.empty-state p { font-size: 22px; font-weight: 500; }
